@@ -1,0 +1,11 @@
+{% extends "based.html"%}
+
+{% block "Turinys" %}
+<h3>Paieskos rezultatai:</h3>
+<ul>
+    {% for author in authors %}
+        <li>{{ author.first_name }} {{ author.last_name }}</li>
+
+    {% endfor %}
+</ul>
+{% endblock %}

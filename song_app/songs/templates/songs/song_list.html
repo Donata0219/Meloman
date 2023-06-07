@@ -1,0 +1,40 @@
+{% extends "based.html"%}
+
+{% block "Turinys" %}
+Paieska:
+
+<form action="{% url 'song_search' %}">
+    <input type="text" name="paieska" placeholder="Paieska">
+    <input type="text" name="duration">
+    <button type="submit">Ieskoti</button>
+</form>
+
+
+Dainu sarasas:
+<ul>
+
+    {% for song in object_list %}
+        <Li>
+            {{ song.title }} ({{ song.duration}} s) -
+            {{song.author.first_name}}
+            {{song.author.last_name}}
+        </Li>
+    {% endfor %}
+
+</ul>
+{{ page_obj.number }}
+<a href = "https://youtube.com"> Isorinis linkas</a>
+<a href="/songs/list/"> Pirmas </a>
+<a href="?page=1"> Pirmas puslapis</a>
+
+{% if page_obj.paginator.num_pages >= 2 %}
+    <a href="?page=2"> Antras puslapis</a>
+{% endif %}
+
+{{page_obj.number}} is
+{{page_obj.paginator.num_pages}}
+
+{%if page_obj.has_previous%}
+<a href="?page={{page.obj.previous_page_number}}"> Praeitas puslapis</a>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "based.html"%}
+
+{% block "Turinys" %}
+
+Paieska:
+
+<form action="{% url 'author_search' %}">
+    <input type="text" name="first_name" placeholder="Vardas">
+    <input type="text" name="last_name" placeholder="Pavarde">
+    <input type="text" name="birth_date" placeholder="data">
+    <button type="submit">Ieskoti</button>
+</form>
+
+Autoriu sarasas:
+<ul>
+
+    {% for author in object_list %}
+        <Li>
+            {{ author.first_name }} {{ authors.last_name}}
+        </Li>
+    {% endfor %}
+
+</ul>
+{{ page_obj.number }}
+
+{% if page_obj.has_previous %}
+       <a href="?page={{ page_obj.previous_page_number }}"> atgal </a>
+{% endif %}
+
+Esate {{page_obj.number}} is
+{{page_obj.paginator.num_pages}}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}"> pirmyn </a>
+{% endif %}
+{% endblock %}
